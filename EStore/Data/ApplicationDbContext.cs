@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using EStore.DataModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EStore.Data
@@ -9,5 +10,8 @@ namespace EStore.Data
             : base(options)
         {
         }
+
+        public DbSet<Admin> Admin { get; set; } = default!;
+
     }
 }
