@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient.DataClassification;
 using System.Reflection.Emit;
+using Label = EStore.Areas.Admin.DataModel.Label;
 
 namespace EStore.Areas.Admin.Controllers
 {
@@ -87,7 +88,7 @@ namespace EStore.Areas.Admin.Controllers
             return View(LabelList);
         }
 
-        public IActionResult LabelCreate(DataModel.Label datamodel)
+        public IActionResult LabelCreate(Label datamodel)
         {
             _context.Label.Add(datamodel);
 
