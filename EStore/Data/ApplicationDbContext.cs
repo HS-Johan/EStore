@@ -1,4 +1,5 @@
-﻿using EStore.DataModels;
+﻿using EStore.Areas.Admin.DataModel;
+using EStore.DataModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,6 +13,10 @@ namespace EStore.Data
         }
 
         public DbSet<Admin> Admin { get; set; } = default!;
+
+        public DbSet<Product> Product { get; set; } = default!;
+
+        public DbSet<Label> Label { get; set; } = default!;
 
     }
 }
