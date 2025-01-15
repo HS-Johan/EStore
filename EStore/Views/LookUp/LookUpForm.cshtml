@@ -15,8 +15,9 @@
 		<div class="card-body">
 
 			<div class="form-group">
-				<label for="dropdown">Select an Option:</label>
-				<select id="dropdown" name="selectedOption">
+				<label for="dropdown" class="control-label">LookUp Type</label>
+				<select id="dropdown" class="form-control border border-primary" name="LookUpType">
+					<option value="">---Select Input---</option>
 					@foreach (var item in ViewBag.LookUpType as List<SelectListItem>)
 					{
 						<option value="@item.Value">@item.Text</option>
@@ -25,12 +26,12 @@
 			</div>
 
 			<div class="form-group">
-				<lebel>Product Image</lebel>
+				<label for="dropdown" class="control-label">LookUp Data</label>
 				<input required type="text" class="form-control border border-primary" />
 			</div>
 
 			<div class="form-group">
-				<lebel>Product Ammount</lebel>
+				<label for="dropdown" class="control-label">LookUp Icon</label>
 				<input required type="number" class="form-control border border-primary" />
 			</div>
 

@@ -60,7 +60,7 @@
 							</td>
 							<td>
 								<a class="btn btn-success" asp-area="Admin" asp-controller="Admin" asp-action="ProductEdit" asp-route-id="@data.ProductId">Edit</a>
-								<a class="btn btn-danger" action="/Admin/Admin/ProductDelete" asp-route-id="@data.ProductId">Delete</a>
+								<a class="btn btn-danger" href="/Admin/Admin/ProductDelete/@data.ProductId">Delete</a>
 							</td>
 						</tr>
 						serial++;
