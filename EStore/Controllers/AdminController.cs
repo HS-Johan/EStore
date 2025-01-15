@@ -1,20 +1,11 @@
-﻿using EStore.Areas.Admin.DataModel;
-using EStore.Areas.Admin.ViewModel;
-using EStore.Data;
+﻿using EStore.Data;
+using EStore.DataModels;
+using EStore.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Data.SqlClient.DataClassification;
-using System.Reflection.Emit;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using Label = EStore.Areas.Admin.DataModel.Label;
 
-namespace EStore.Areas.Admin.Controllers
+namespace EStore.Controllers
 {
-
-    [Area("Admin")]
-    [Route("Admin/[Controller]/[Action]")]
-    [Route("Admin/[Controller]")]
-
     public class AdminController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -81,23 +72,79 @@ namespace EStore.Areas.Admin.Controllers
             _context.SaveChanges();
 
             //return View(product);
-            return RedirectToAction("ProductForm");
+            return RedirectToAction("ProductList");
 
         }
 
-        public  IActionResult ProductList()
+        public IActionResult ProductList()
         {
             var data = _context.Product.ToList();
 
             return View(data);
         }
 
-        public  IActionResult ProductEdit()
+        public IActionResult ProductEdit(int? id)
         {
-            return Ok();
+            if( id == null )
+            {
+                return NotFound();
+            }
+
+            var product = _context.Product.FirstOrDefault(johan => johan.ProductId == id);
+
+            ViewBag.LabelList = _context.Label.Select(x => new SelectListItem
+            {
+                Value = x.LableId.ToString(),
+                Text = x.LabelName
+
+            }).ToList();
+
+            return View(product);
         }
 
-        public  IActionResult ProductDelete(int? id)
+        [HttpPost]
+        public async Task<IActionResult> ProductEdit(ProductVM product)
+        {
+            //file upload start
+            string uniqueFileName = null;
+            if (product.UploadImage != null)
+            {
+                string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\upload");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + product.UploadImage.FileName;
+
+                string filepath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+
+                }
+                using (var filestrem = new FileStream(filepath, FileMode.Create))
+                {
+                    await product.UploadImage.CopyToAsync(filestrem);
+                }
+
+            }
+            //file upload End
+
+            var RealDataModel = new Product();
+
+            RealDataModel.ProductId = product.ProductId;
+            RealDataModel.Name = product.Name;
+            RealDataModel.Price = product.Price;
+            RealDataModel.Description = product.Description;
+            RealDataModel.Category = product.Category;
+            RealDataModel.Image = uniqueFileName;
+            RealDataModel.LableId = product.LableId;
+            RealDataModel.IsActive = product.IsActive;
+
+            _context.Product.Update(RealDataModel);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("ProductList");
+        }
+
+        public IActionResult ProductDelete(int? id)
         {
             if (id == null)
             {
@@ -188,6 +235,5 @@ namespace EStore.Areas.Admin.Controllers
             }
 
         }
-
     }
 }

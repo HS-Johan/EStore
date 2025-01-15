@@ -1,5 +1,4 @@
-﻿using EStore.Areas.Admin.DataModel;
-using EStore.DataModels;
+﻿using EStore.DataModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

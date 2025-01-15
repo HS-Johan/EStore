@@ -1,9 +1,11 @@
-﻿@model EStore.Areas.Admin.ViewModel.ProductVM
-
-@{
-    ViewData["Title"] = "Product Create";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+﻿﻿@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "Edit Product";
 }
+
+@model EStore.DataModels.Product
+
+<h1> Product Edit </h1>
 
 <div class="row">
     <div class="col-md-12">
@@ -13,32 +15,38 @@
             </div>
             <!-- /.card-header -->
 
-            <form action="/Admin/Admin/ProductSubmit" method="post" enctype="multipart/form-data">
+            <form asp-controller="Admin" asp-action="ProductEdit" method="post" enctype="multipart/form-data">
                 @Html.AntiForgeryToken()
                 <div class="card-body">
                     <div class="row">
                         <!-- Left Section -->
                         <div class="col-md-8">
+
+                            <input asp-for="ProductId" hidden />
+
                             <div class="form-group">
                                 <label for="Name" class="control-label">Name</label>
-                                <input type="text" id="Name" class="form-control" name="Name" placeholder="Enter product name" />
+                                <input type="text" id="Name" class="form-control" name="Name" asp-for="Name" />
                             </div>
+
                             <div class="form-group">
                                 <label for="Description" class="control-label">Description</label>
-                                <textarea id="Description" class="form-control" name="Description" rows="4" placeholder="Enter product description"></textarea>
+                                <textarea id="Description" class="form-control" name="Description" rows="4" asp-for="Description"></textarea>
                             </div>
+
                             <div class="form-group">
                                 <label for="Price" class="control-label">Price</label>
-                                <input type="number" id="Price" class="form-control" name="Price" placeholder="Enter product price" />
+                                <input type="number" id="Price" class="form-control" name="Price" asp-for="Price" />
                             </div>
+
                             <div class="form-group">
                                 <label for="Category" class="control-label">Category</label>
-                                <input type="text" id="Category" class="form-control" name="Category" placeholder="Enter product category" />
+                                <input type="text" id="Category" class="form-control" name="Category" asp-for="Category" />
                             </div>
 
                             <div class="form-group">
                                 <label for="LableId" class="control-label">Labels</label>
-                                <select id="LableId" class="form-control" name="LableId">
+                                <select id="LableId" class="form-control" name="LableId" asp-for="LableId">
                                     <option value="">---Select Labels---</option>
                                     @foreach (var labes in ViewBag.LabelList)
                                     {
@@ -49,7 +57,7 @@
 
                             <div class="form-group">
                                 <label for="IsActive" class="control-label">Is Active</label>
-                                <select id="IsActive" class="form-control" name="IsActive">
+                                <select id="IsActive" class="form-control" name="IsActive" asp-for="IsActive">
                                     <option value="true">Active</option>
                                     <option value="false">Inactive</option>
                                 </select>
@@ -77,8 +85,8 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Create</button>
-                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a asp-action="ProductList" class="btn btn-secondary">Back to List</a>
                 </div>
                 <!-- /.card-footer -->
             </form>

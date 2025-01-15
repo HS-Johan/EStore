@@ -1,25 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace EStore.Areas.Admin.DataModel
+﻿namespace EStore.ViewModel
 {
-    public class Product
+    public class ProductVM
     {
-        [Key]
         public int ProductId { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? Image { get; set; }
         public double Price { get; set; }
         public int LableId { get; set; }
+        public string? LableName { get; set; }
         public bool IsActive { get; set; }
         public string? Category { get; set; }
+        public IFormFile? UploadImage { get; set; }
     }
-
-    public class Label
-    {
-        [Key]
-        public int LableId { get; set; }
-        public string? LabelName { get; set; }
-    }
-
 }

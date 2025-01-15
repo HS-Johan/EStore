@@ -3,7 +3,7 @@
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@model IEnumerable<EStore.Areas.Admin.DataModel.Product>
+@model IEnumerable<EStore.DataModels.Product>
 
 <div class="card">
 
@@ -30,12 +30,12 @@
 				<tr>
 					<th class="col-1">Serial</th>
 					<th class="col-1">Name</th>
-					<th class="col-1">Description</th>
+					<th class="col-2">Description</th>
 					<th class="col-1">Price</th>
 					<th class="col-1">Category</th>
+					<th class="col-2">Image</th>
 					<th class="col-1">LabelId</th>
 					<th class="col-1">Is Active</th>
-					<th class="col-3">Image</th>
 					<th class="col-2">Action</th>
 				</tr>
 			</thead>
@@ -53,14 +53,14 @@
 							<td>@data.Description</td>
 							<td>@data.Price</td>
 							<td>@data.Category</td>
-							<td>@data.LableId</td>
-							<td>@data.IsActive</td>
 							<td>
 								<img src="~/upload/@data.Image" style="width: 50%;" />
 							</td>
+							<td>@data.LableId</td>
+							<td>@data.IsActive</td>
 							<td>
-								<a class="btn btn-success" asp-area="Admin" asp-controller="Admin" asp-action="ProductEdit" asp-route-id="@data.ProductId">Edit</a>
-								<a class="btn btn-danger" href="/Admin/Admin/ProductDelete/@data.ProductId">Delete</a>
+								<a class="btn btn-success" asp-action="ProductEdit" asp-route-id="@data.ProductId">Edit</a>
+								<a class="btn btn-danger" asp-action="ProductDelete" asp-route-id="@data.ProductId">Delete</a>
 							</td>
 						</tr>
 						serial++;

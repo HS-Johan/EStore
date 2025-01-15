@@ -1,5 +1,7 @@
 using System.Diagnostics;
+using EStore.Data;
 using EStore.Models;
+using EStore.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EStore.Controllers
@@ -8,14 +10,23 @@ namespace EStore.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public readonly ApplicationDbContext _context;
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var allproduct = _context.Product.Take(10).ToList();
+
+            var HomePageVM = new HomePageVM();
+
+            HomePageVM.Product = allproduct;
+
+            return View(HomePageVM);
         }
 
         public IActionResult Privacy()
