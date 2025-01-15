@@ -3,6 +3,7 @@ using EStore.DataModels;
 using EStore.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using NuGet.Protocol.Core.Types;
 
 namespace EStore.Controllers
 {
@@ -227,13 +228,53 @@ namespace EStore.Controllers
             try
             {
                 _context.SaveChanges();
-                return Json(true);
+
+                var result = _context.Label.ToList();
+
+                return Json(new { success =  true, newData= result } );
             }
             catch (Exception)
             {
-                return Json(false);
+                return Json(new { success = false } );
             }
 
+        }
+
+        public IActionResult LabelEdit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var data = _context.Label.FirstOrDefault( x => x.LableId == id );
+
+            if (data == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(data); 
+        }
+        
+        public IActionResult LabelDelete(int? id)
+        {
+            if( id == null)
+            {
+                return NotFound();
+            }
+
+            var data = _context.Label.FirstOrDefault( x => x.LableId == id );
+
+            if (data == null) 
+            {
+                return NotFound();
+            }
+
+            _context.Label.Remove(data);
+            _context.SaveChanges();
+
+            return RedirectToAction("Labels");
         }
     }
 }

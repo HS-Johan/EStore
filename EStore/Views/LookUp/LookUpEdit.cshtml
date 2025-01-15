@@ -1,22 +1,24 @@
-﻿@model EStore.DataModels.LookUp
-
-@{
+﻿@{
     ViewData["Title"] = "LookUp Create";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+@model EStore.DataModels.LookUp
+
 <div class="card card-info col-12 justify-content-center m-0">
 	<div class="card-header">
 		<h3 class="card-title">
-			Add LookUp
+			Edit LookUp
 		</h3>
 	</div>
-	<form asp-controller="LookUp" asp-action="LookUpSubmit">
+	<form asp-controller="LookUp" asp-action="LookUpEdit">
 		<div class="card-body">
+
+			<input asp-for="LookUpId" hidden />
 
 			<div class="form-group">
 				<label for="dropdown" class="control-label">LookUp Type</label>
-				<select id="dropdown" class="form-control border border-primary" name="LookUpType" >
+				<select id="dropdown" class="form-control border border-primary" name="LookUpType" asp-for="LookUpType">
 					<option value="">---Select Input---</option>
 					@foreach (var item in ViewBag.LookUpType as List<SelectListItem>)
 					{
@@ -27,7 +29,7 @@
 
 			<div class="form-group">
 				<label for="dropdown" class="control-label">LookUp Data</label>
-				<input required type="text" class="form-control border border-primary" asp-for="LookUpData"/>
+				<input required type="text" class="form-control border border-primary" asp-for="LookUpData" />
 			</div>
 
 			<div class="form-group">

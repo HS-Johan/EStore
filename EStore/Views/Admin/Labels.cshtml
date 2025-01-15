@@ -16,8 +16,6 @@
 						<i class="fas fa-plus"></i> Add New Label
 					</button>
 
-
-
 				</div>
 			</div>
 			<!-- /.card-header -->
@@ -26,28 +24,32 @@
 				<table id="example1" class="table table-bordered table-striped">
 					<thead>
 						<tr>
+							<th class="col-2">Serial</th>
 							<th class="col-2">Label Id</th>
-							<th class="col-8">Label Name</th>
+							<th class="col-6">Label Name</th>
 							<th class="col-2">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
 						@if (Model != null)
 						{
+							int serial = 1 ;
 							foreach (var label in Model)
 							{
 								<tr>
+									<td>@serial</td>
 									<td>@label.LableId</td>
 									<td>@label.LabelName</td>
 									<td>
-										<a asp-area="Admin" asp-controller="Label" asp-action="Edit" asp-route-id="@label.LableId" class="btn btn-info btn-sm">
+										<a asp-controller="Admin" asp-action="LabelEdit" asp-route-id="@label.LableId" class="btn btn-info btn-sm">
 											<i class="fas fa-edit"></i> Edit
 										</a>
-										<a asp-area="Admin" asp-controller="Label" asp-action="Delete" asp-route-id="@label.LableId" class="btn btn-danger btn-sm">
+										<a asp-controller="Admin" asp-action="LabelDelete" asp-route-id="@label.LableId" class="btn btn-danger btn-sm">
 											<i class="fas fa-trash"></i> Delete
 										</a>
 									</td>
 								</tr>
+								serial++;
 							}
 						}
 					</tbody>
@@ -60,7 +62,7 @@
 </div>
 
 
-<!-- Modal -->
+<!-- create Label Modal -->
 <div class="modal fade" id="createLabelModal" tabindex="-1" aria-labelledby="createLabelModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -93,10 +95,10 @@
 	$(document).ready(function () {
 		$('#createLabelForm').on('submit', function (e) {
 			e.preventDefault();
-			alert("ok");
+			// alert("ok");
 			var formData = new FormData(this);
 			$.ajax({
-				url: '@Url.Action("LabelCreate", "Admin", new { area = "Admin" })',
+				url: '/Admin/LabelCreate',
 				type: 'POST',
 				data: formData,
 				processData: false,

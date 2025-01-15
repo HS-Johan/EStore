@@ -1,0 +1,73 @@
+﻿@{
+	ViewData["Title"] = "LookUp List";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@model IEnumerable<EStore.DataModels.LookUp>
+
+<h1>Lookup List</h1>
+
+<div class="card">
+
+	<div class="card-header">
+		<h3 class="card-title">Lookup List</h3>
+
+		<div class="card-tools">
+			<button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+				<i class="fas fa-minus"></i>
+			</button>
+			<button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+				<i class="fas fa-times"></i>
+			</button>
+		</div>
+	</div>
+
+	<div class="card-body">
+
+
+		<table class="table table-hover">
+			<thead class="table-info">
+				<tr>
+					<th class="col-1">Serial</th>
+					<th class="col-1">Lookup Type Id</th>
+					<th class="col-2">Lookup Type</th>
+					<th class="col-2">Lookup Data</th>
+					<th class="col-2">Lookup Icon</th>
+					<th class="col-2">Is Active</th>
+					<th class="col-2">Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+
+				@{
+					int serial = 1;
+					foreach (var data in Model)
+					{
+
+						<tr>
+							<td>@serial</td>
+							<td>@data.LookUpType</td>
+							<td></td>
+							<td>@data.LookUpData</td>
+							<td class="social_box">
+								<i class="@data.LookUpIcon" aria-hidden="true"></i>
+							</td>
+							<td>@data.IsActive</td>
+							<td>
+								<a class="btn btn-success" asp-action="LookUpEdit" asp-route-id="@data.LookUpId">Edit</a>
+								<a class="btn btn-danger" asp-action="LookUpDelete" asp-route-id="@data.LookUpId">Delete</a>
+							</td>
+						</tr>
+						serial++;
+					}
+				}
+
+			</tbody>
+
+		</table>
+
+
+	</div>
+
+</div>
