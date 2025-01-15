@@ -205,12 +205,12 @@
                         <!-- Add icons to the links using the .nav-icon class
                            with font-awesome or any other icon font library -->
 
-                        <!-- Admin -->
+                        <!-- Product -->
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Admin
+                                    Product
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -226,9 +226,9 @@
 
                              <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a asp-controller="" asp-action="" class="nav-link">
+                                    <a asp-area="Admin" asp-controller="Admin" asp-action="ProductList" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Admin Info</p>
+                                        <p>Product List</p>
                                     </a>
                                 </li>
                             </ul>
@@ -238,6 +238,36 @@
                                     <a asp-area="Admin" asp-controller="Admin" asp-action="Labels" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Labels</p>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </li>
+
+                        <!-- LookUp -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    LookUp
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-controller="LookUp" asp-action="LookUpForm" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>LookUp Form</p>
+                                    </a>
+                                </li>
+                            </ul>
+
+                             <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-controller="LookUp" asp-action="LookUpList" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>LookUp List</p>
                                     </a>
                                 </li>
                             </ul>

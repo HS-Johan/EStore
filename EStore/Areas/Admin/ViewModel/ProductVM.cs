@@ -8,6 +8,7 @@
         public string? Image { get; set; }
         public double Price { get; set; }
         public int LableId { get; set; }
+        public string? LableName { get; set; }
         public bool IsActive { get; set; }
         public string? Category { get; set; }
         public IFormFile? UploadImage { get; set; }

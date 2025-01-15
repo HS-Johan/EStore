@@ -18,5 +18,7 @@ namespace EStore.Data
 
         public DbSet<Label> Label { get; set; } = default!;
 
+        public DbSet<LookUp> LookUp { get; set; } = default!;
+
     }
 }

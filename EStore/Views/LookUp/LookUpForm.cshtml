@@ -1,0 +1,48 @@
+﻿@model EStore.DataModels.LookUp
+
+@{
+    ViewData["Title"] = "LookUp Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card card-info col-12 justify-content-center m-0">
+	<div class="card-header">
+		<h3 class="card-title">
+			Add LookUp
+		</h3>
+	</div>
+	<form asp-controller="Product" asp-action="ProductSubmit">
+		<div class="card-body">
+
+			<div class="form-group">
+				<label for="dropdown">Select an Option:</label>
+				<select id="dropdown" name="selectedOption">
+					@foreach (var item in ViewBag.LookUpType as List<SelectListItem>)
+					{
+						<option value="@item.Value">@item.Text</option>
+					}
+				</select>
+			</div>
+
+			<div class="form-group">
+				<lebel>Product Image</lebel>
+				<input required type="text" class="form-control border border-primary" />
+			</div>
+
+			<div class="form-group">
+				<lebel>Product Ammount</lebel>
+				<input required type="number" class="form-control border border-primary" />
+			</div>
+
+			<div class="form-check">
+				<input type="checkbox" class="form-check-input" asp-for="IsActive" />
+				<label class="form-check-label">Is Active</label>
+			</div>
+
+		</div>
+
+		<div class="card-footer">
+			<button type="submit" class="btn btn-primary">Add</button>
+		</div>
+	</form>
+</div>

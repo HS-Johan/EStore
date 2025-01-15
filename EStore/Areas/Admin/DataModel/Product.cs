@@ -21,4 +21,5 @@ namespace EStore.Areas.Admin.DataModel
         public int LableId { get; set; }
         public string? LabelName { get; set; }
     }
+
 }
