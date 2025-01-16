@@ -1,6 +1,5 @@
 ﻿@using EStore.Data
-@* @inject EStoreContext dbcontext; *@
-
+@inject ApplicationDbContext dbcontext
 
 <!DOCTYPE html>
 <html lang="en">
@@ -188,9 +187,9 @@
 
                 <div class="col-md-6 template-by">
 
-                    @* @{
-                        var temdata = dbcontext.Label.FirstOrDefault();
-                    } *@
+                     @{
+                        // var temdata = dbcontext.Label.FirstOrDefault();
+                    } 
 
                     @* <p>@temdata.LabelName</a></p> *@
                 </div>
