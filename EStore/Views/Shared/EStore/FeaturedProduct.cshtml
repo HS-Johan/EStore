@@ -51,14 +51,23 @@
 
     function addToCart(productId)
     {
-        // alert(productId);
-        .$ajax({
+         // alert(productId);
+        $.ajax({
             url:'/EStore/AddToCart',
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             data:JSON.stringify(productId),
             success: function(response) 
             {
+                if( response.success == false )
+                {
+                     alert(response.msg);
+                }
+                if( response.success == true )
+                {
+                     alert(response.msg);
+                }
+
 
             }
         })
