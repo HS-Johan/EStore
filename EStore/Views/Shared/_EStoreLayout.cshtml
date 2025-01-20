@@ -89,7 +89,7 @@
                             <i class="fa fa-heart"></i>
                             <span>(0)</span>
                         </a>
-                        <a href="cart.html" class="btn cart">
+                        <a href=#" class="btn cart">
                             <i class="fa fa-shopping-cart"></i>
                             <span>(0)</span>
                         </a>
@@ -98,6 +98,36 @@
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+
+        function UpdateCartCount()
+        {
+             // alert(productId);
+            $.ajax({
+
+                url:'/EStore/GetCartCount',
+
+                type: 'GET',
+
+                success: function(response)
+                {
+                    // alert(response);
+
+                    $('a.cart span').text(response);
+                }
+            })
+        }
+
+        $(document).ready(function()
+        {
+            UpdateCartCount();
+        });
+
+    </script>
+
     <!-- Bottom Bar End -->
 
     <main role="main">

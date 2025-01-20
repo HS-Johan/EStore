@@ -41,15 +41,16 @@ namespace EStore.Controllers
             if (product.UploadImage != null)
             {
                 string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\upload");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + product.UploadImage.FileName;
-
-                string filepath = Path.Combine(uploadsFolder, uniqueFileName);
 
                 if (!Directory.Exists(uploadsFolder))
                 {
                     Directory.CreateDirectory(uploadsFolder);
-
                 }
+
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + product.UploadImage.FileName;
+
+                string filepath = Path.Combine(uploadsFolder, uniqueFileName);
+
                 using (var filestrem = new FileStream(filepath, FileMode.Create))
                 {
                     await product.UploadImage.CopyToAsync(filestrem);
