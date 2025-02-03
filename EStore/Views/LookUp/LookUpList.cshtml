@@ -48,7 +48,40 @@
 						<tr>
 							<td>@serial</td>
 							<td>@data.LookUpType</td>
-							<td></td>
+
+							@{
+								switch (@data.LookUpType)
+								{
+									case 1:
+										<td>Support Email</td>
+										break;
+									case 2:
+										<td>Support Phone</td>
+										break;
+									case 3:
+										<td>Copyright</td>
+										break;
+									case 4:
+										<td>Template By</td>
+										break;
+									case 5:
+										<td>Address</td>
+										break;
+									case 6:
+										<td>Email</td>
+										break;
+									case 7:
+										<td>Phone</td>
+										break;
+									case 8:
+										<td>Social</td>
+										break;
+									default:
+										<td>---</td>
+										break;
+								}
+							}
+
 							<td>@data.LookUpData</td>
 							<td class="social_box">
 								<i class="@data.LookUpIcon" aria-hidden="true"></i>
